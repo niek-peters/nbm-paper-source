@@ -1,0 +1,1077 @@
+\DocumentMetadata{ }
+
+%%%% Large double column format, used for TOG
+\documentclass[acmtog, authorversion]{acmart}
+\usepackage[htt]{hyphenat}
+\usepackage{graphicx}
+\usepackage{pgfgantt}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{makecell}
+\usepackage{mathtools}
+\usepackage{placeins}
+\usepackage{xltabular}
+\renewcommand{\arraystretch}{1.2}
+\renewcommand\cellalign{tl}
+\usepackage{float}
+
+\usepackage{fancyvrb}
+
+% \usepackage{listings}
+
+\graphicspath{{images/}}
+\newcommand{\codecell}[1]{\parbox[t]{\linewidth}{\vspace{-8pt}\UseVerbatim{#1}}}
+
+%%%% Generic manuscript mode, required for submission
+%%%% and peer review
+%\documentclass[manuscript,screen,review]{acmart}
+%% Fonts used in the template cannot be substituted; margin 
+%% adjustments are not allowed.
+%%
+%% \BibTeX command to typeset BibTeX logo in the docs
+\AtBeginDocument{%
+  \providecommand\BibTeX{{%
+    \normalfont B\kern-0.5em{\scshape i\kern-0.25em b}\kern-0.8em\TeX}}}
+
+% Show ISBNs in the references list
+\providecommand\showISBNx[1]{ISBN #1.}
+\providecommand\showISBNxiii[1]{ISBN-13 #1.}
+
+%% Rights management information.  This information is sent to you
+%% when you complete the rights form.  These commands have SAMPLE
+%% values in them; it is your responsibility as an author to replace
+%% the commands and values with those provided to you when you
+%% complete the rights form.
+
+\setcopyright{acmcopyright}
+\copyrightyear{2026}
+\acmYear{2026}
+
+%% These commands are for a PROCEEDINGS abstract or paper.
+\acmConference[TScIT 45]{45$^{th}$ Twente Student Conference on IT}{July 3,
+  2026}{Enschede, The Netherlands}
+%
+%  Uncomment \acmBooktitle if th title of the proceedings is different
+%  from ``Proceedings of ...''!
+%
+%\acmBooktitle{Woodstock '18: ACM Symposium on Neural Gaze Detection,
+% June 03--05, 2018, Woodstock, NY} 
+%\acmPrice{15.00}
+%\acmISBN{978-1-4503-XXXX-X/18/06}
+
+
+%%
+%% Submission ID.
+%% Use this when submitting an article to a sponsored event. You'll
+%% receive a unique submission ID from the organizers
+%% of the event, and this ID should be used as the parameter to this command.
+%%\acmSubmissionID{123-A56-BU3}
+
+%%
+%% For managing citations, it is recommended to use bibliography
+%% files in BibTeX format.
+%%
+%% You can then either use BibTeX with the ACM-Reference-Format style,
+%% or BibLaTeX with the acmnumeric or acmauthoryear sytles, that include
+%% support for advanced citation of software artefact from the
+%% biblatex-software package, also separately available on CTAN.
+%%
+%% Look at the sample-*-biblatex.tex files for templates showcasing
+%% the biblatex styles.
+%%
+
+%%
+%% The majority of ACM publications use numbered citations and
+%% references.  The command \citestyle{authoryear} switches to the
+%% "author year" style.
+%%
+%% If you are preparing content for an event
+%% sponsored by ACM SIGGRAPH, you must use the "author year" style of
+%% citations and references.
+%% Uncommenting
+%% the next command will enable that style.
+%%\citestyle{acmauthoryear}
+
+%%
+%% end of the preamble, start of the body of the document source.
+\begin{document}
+
+%%
+%% The "title" command has an optional parameter,
+%% allowing the author to define a "short title" to be used in page headers.
+\title[Bridging the Gap between Mathematics and Programming]{Bridging the Gap between Mathematics and Programming via a Dual-Target DSL for LaTeX and Haskell}
+
+%%
+%% The "author" command and its associated commands are used to define
+%% the authors and their affiliations.
+%% Of note is the shared affiliation of the first two authors, and the
+%% "authornote" and "authornotemark" commands
+%% used to denote shared contribution to the research.
+
+\author{Niek Peters}
+\email{n.s.peters@student.utwente.nl}
+\affiliation{%
+  \institution{University of Twente}
+  \streetaddress{P.O. Box 217}
+  \city{Enschede}
+  \country{The Netherlands}
+  \postcode{7500AE}
+}
+
+
+
+%%
+%% By default, the full list of authors will be used in the page
+%% headers. Often, this list is too long, and will overlap
+%% other information printed in the page headers. This command allows
+%% the author to define a more concise list
+%% of authors' names for this purpose.
+\renewcommand{\shortauthors}{Niek Peters}
+
+%%
+%% The abstract is a short summary of the work to be presented in the
+%% article.
+\begin{abstract}
+  % TODO: remove duplicate intro from this
+  Many research papers and textbooks in the STEM field give mathematical representations of programs used in analysis.
+  Writing these mathematical representations of programs remains a manual process.
+  In other cases, programs and algorithms are represented by source code or non-formal pseudocode, alienating those unfamiliar with programming.
+  This paper presents research into the design of a DSL capable of generating both high-quality \LaTeX\ documents with formal mathematical notation and Haskell libraries, automating the translation process.
+  To validate the design, a prototype implementation of the designed DSL is showcased that enables expressing algorithms in the field of Computational Number Theory.
+  Additionally allowing the automatic embedding of runtime evaluation results into the document output, promoting reproducible science.
+  Future work can focus on expanding this concept beyond the syntax required for these algorithms, covering a larger area of mathematics.
+\end{abstract}
+
+%%
+%% The code below is generated by the tool at http://dl.acm.org/ccs.cfm
+%% Please copy and paste the code instead of the example below.
+%%Optional
+%%
+%%\begin{CCSXML}
+%%<ccs2012>
+%% <concept>
+%%  <concept_id>10010520.10010553.10010562</concept_id>
+%%  <concept_desc>Computer systems organization~Embedded systems</concept_desc>
+%%  <concept_significance>500</concept_significance>
+%% </concept>
+%% <concept>
+%%  <concept_id>10010520.10010575.10010755</concept_id>
+%%  <concept_desc>Computer systems organization~Redundancy</concept_desc>
+%%  <concept_significance>300</concept_significance>
+%% </concept>
+%% <concept>
+%%  <concept_id>10010520.10010553.10010554</concept_id>
+%%  <concept_desc>Computer systems organization~Robotics</concept_desc>
+%%  <concept_significance>100</concept_significance>
+%% </concept>
+%% <concept>
+%%  <concept_id>10003033.10003083.10003095</concept_id>
+%%  <concept_desc>Networks~Network reliability</concept_desc>
+%%  <concept_significance>100</concept_significance>
+%% </concept>
+%%</ccs2012>
+%%\end{CCSXML}
+
+%%\ccsdesc[500]{Computer systems organization~Embedded systems}
+%%\ccsdesc[300]{Computer systems organization~Redundancy}
+%%\ccsdesc{Computer systems organization~Robotics}
+%%\ccsdesc[100]{Networks~Network reliability}
+
+%%
+%% Keywords. The author(s) should pick words that accurately describe
+%% the work being presented. Separate the keywords with commas.
+\keywords{Domain-Specific Language, Literate Programming, Mathematical Notation, Reproducible Science}
+
+\settopmatter{printacmref=false}
+
+%%
+%% This command processes the author and affiliation and title
+%% information and builds the first part of the formatted document.
+\maketitle
+
+% 
+
+\section{Introduction}
+Algorithms are used and presented in many textbooks and research papers in the STEM field.
+They are explained for educational purposes, presented for use in new methods and used in processing results.
+It is a space where mathematics and computer science meet, existing in both formal mathematical definitions in writing and implementations in computer code.
+Still, there is a gap between these two representations. 
+Traditionally, if both representations are desired, both have to be created and maintained separately,
+taking care to keep them synchronised when one is altered.
+As a result, the mathematical representations of the algorithms are error-prone and differ in notation from source to source. % TODO: consider citing all the algorithms books here?
+Them being divided over two entirely different sources comes with another issue:
+in many cases, code used in analysis is left entirely unpublished, hindering the reproducibility of the research~\cite{kluyver2016jupyter}.
+
+Development of tools allowing the creation of a representation in writing and implementations in computer code from a single source is a much-explored endeavour.
+One approach, coined \textit{literate programming}, allows one to write programs like essays,
+intermingling sections of text and code in the same file, explaining concepts as code is introduced.
+The original `WEB' system that introduced this, then enables generation of both a descriptive document and executable program from this single source~\cite{knuth1984literate}.
+
+To further improve the reproducibility of science, \textit{code notebooks} were developed, 
+which in addition to allowing the same intermingling of text and code sections and compiling to descriptive documents, 
+make reproducing results as easy as clicking a button to run a code block, displaying the results right below it~\cite{kluyver2016jupyter}. 
+As results are embedded directly into the output, they can be easily updated when changes are made to the underlying algorithms, eliminating errors in manual reporting of results~\cite{bar2021reproducible}.
+
+Whereas the aforementioned solutions do not change how computer code is represented in the generated document, 
+there are solutions tailored to specific use cases that can automatically generate representations closer to mathematical notation.
+These tools let users write code in a `Domain-Specific Language' (`DSL'), a programming language designed for a specific use case.
+Examples include the mathematical proof assistant `Isabelle' with its `Higher-Order Logic' (`HOL') language~\cite{nipkow2002isabelle, haftmann2026latex} and the `Acumen' system for physics simulations~\cite{zhu2010mathematical}.
+
+\subsection{Problem statement}
+While literate programming removes the need to maintain two separate descriptions of an algorithm 
+and code notebooks make reproducible science trivial, they do not create mathematical representations of algorithms,
+requiring the reader to understand the used programming language.
+There are tools that can generate consistent mathematical representations of code,
+but these are not made for the purpose of expressing algorithms, either targeting an entirely different domain or 
+requiring significant extra effort and knowledge by relying on mathematical proofs.
+
+\subsection{Objective}
+The objective of this research is to address this gap by designing a DSL and implementing a prototype compiler that, 
+given a single source containing intermingled algorithms and text,
+generates two outputs: 
+one a document with the text and algorithms represented with a consistent mathematical notation and 
+another a computer code library, giving runnable implementations of the algorithms. 
+This all with the automatic embedding and updating of results whenever the output document is generated,
+while only needing to distribute a single source file, guaranteeing up-to-date results and making reproducible science trivial.
+
+Specifically, the target audience of this tool is STEM-field scientists who are familiar with mathematical notation. % TODO: give reason
+They should be able to both easily learn how to use the tool and be able to read the representations of the algorithms in the output document,
+without needing programming knowledge.
+
+\LaTeX\ was chosen as a target document format, as it is widely used within the scientific community, which is the target audience of this tool.
+The \LaTeX\ ecosystem of packages is vast, including many tools researchers rely on.
+As such, we want this ecosystem to stay entirely available to users of this tool.
+Haskell was chosen as a target programming language, which due to its foundation in lambda calculus, incorporates mathematical concepts and has a syntax closely resembling mathematical notation~\cite{thompson2011haskell}.
+
+Due to the limited time available for this project, the scope of mathematics for which the tool was designed was limited to that of Computational Number Theory~\cite{shoup2008computational}. 
+This field was selected for its direct applicability in algorithms, such as for cryptography.
+
+\subsection{Research question}
+From the problem statement and objective, the main research question arises:
+
+\textit{How can a Domain-Specific Language be designed to bridge mathematical notation and functional programming into a single source for scientists, specifically within the domain of Computational Number Theory?}
+
+To answer the main research question, the following supporting sub-questions will be considered:
+\begin{enumerate}
+  \item \textit{To what extent can standard mathematical notation for Computational Number Theory be mapped to Haskell while preserving semantic intent?} \label{srq1}
+  \item \textit{What syntax and annotations are necessary for a DSL to support both high-quality document generation and correct executable code generation?} \label{srq2}
+  \item \textit{What design trade-offs arise between usability for scientists and formal explicitness in such a DSL?} \label{srq3}
+\end{enumerate}
+
+\section{Requirements}
+\label{section:requirements}
+We start by defining a set of clear requirements the tool should fulfill.
+
+The tool should:
+\begin{enumerate}
+  \item allow generation of both a document and program representation from a single source containing intermingled algorithms and text;
+  \item allow use of the \LaTeX\ ecosystem of packages;
+  \item have the document output be readable for those familiar with mathematics;
+  \item allow automatic embedding of results into the generated document;
+  \item provide a DSL that does not require knowledge of programming-only concepts like imports or explicit type casting; and
+  \item ensure users of the DSL only need to write function definitions, without the need for mathematical proofs.
+\end{enumerate}
+
+The last two requirements in particular are aimed at the usability of the tool for the target audience of STEM-field scientists. 
+Programming-only concepts like imports and explicit type casting would alienate non-programmers, while formal mathematical proofs would alienate non-mathematicians.
+
+\section{Existing solutions}
+\label{section:existing-solutions}
+Now we will cover potential existing solutions in more detail, 
+showing what problems they solve and which of our requirements they miss.
+
+\subsection{WEB/CWEB}
+The `WEB' system~\cite{knuth1984literate} allows compiling to both a Pascal and \TeX\ output from a single source.
+The later-developed `CWEB' system~\cite{knuth1994cweb} adapts the WEB system to C programs.
+
+These tools are very powerful when it comes to documenting code, but they are not meant to change how the code \textit{itself} is represented.
+Furthermore, the system lacks the ability to run programs and insert runtime results into the generated \TeX\ output.
+Lastly, the actual program implementations are still written with a classic programming language's syntax, requiring knowledge of programming-only concepts.
+
+\textbf{Missed requirements:} 3, 4 and 5
+
+\subsection{Literate Haskell}
+The literate programming approach has been adapted to other languages as well, like Haskell, which supports it natively~\cite{haskell2010report}.
+To process these literate Haskell files with \LaTeX, the lhs2\TeX\ preprocessor~\cite{hinze2023guide} can be used.
+Its behaviour can then be configured by choosing from a range of different styles, also supporting different mathematical formatting modes.
+Using the `poly' style, the recommended style for mathematical formatting, Haskell code gets automatically typeset and some symbols get substituted for more standard mathematical symbols.
+
+Although the use of mathematical symbols might already somewhat improve the readability for non-programmers, the output still generally looks like Haskell code.
+It is possible to heavily modify the output of lhs2\TeX, potentially making it possible to have it strictly use mathematical notation, 
+but this would require significant manual configuration. 
+It also does not allow one to insert code execution results into the output \LaTeX\ document.
+Finally, the source code is of course still written in Haskell, which requires knowledge of programming-only concepts, like imports and (sometimes) explicit type casting.
+
+\textbf{Missed requirements:} 3, 4 and 5
+
+\subsection{Jupyter Notebooks}
+A popular implementation of code notebooks is the Jupyter Notebook~\cite{kluyver2016jupyter}, 
+supporting many different programming languages, plus allowing users to easily edit notebooks through a web browser.
+Researchers are then encouraged to publish their work together with a notebook to reproduce it.
+
+While it is possible to generate a \LaTeX\ file from a Jupyter Notebook,
+using it as the source for writing a research paper is considered not very practical~\cite{kluyver2016jupyter}.
+The text cells are written using the Markdown markup language, which is not as versatile as \LaTeX, instead supporting more simple text editing.
+Niceties that researchers are used to, like using Bib\TeX\ for handling citations and the many other plugins available for \LaTeX, are either immature or entirely absent~\cite{kluyver2016jupyter}.
+Finally, the code written in such a notebook would still be represented as-is, requiring readers to understand the programming language the code was written in.
+
+\textbf{Missed requirements:} 2, 3 and 5
+
+\subsection{Reproducible science with LaTeX}
+Bar and Wang~\cite{bar2021reproducible} propose a different approach, where code is instead incorporated in a \LaTeX\ document.
+Their solution then enables code to be executed when the source file is compiled, inserting output into the resulting document.
+With this approach, the vast \LaTeX\ ecosystem researchers are used to stays entirely available, acting more like a pre-processor of sorts.
+A pipeline similar to this appears to be the best choice for fulfilling the requirements we set out before.  
+Still, just like with Jupyter Notebooks, the representation of the code itself does not change.
+The scripts remain plain programming code, requiring both the author and reader to be familiar with a programming language.
+
+\textbf{Missed requirements:} 3 and 5
+
+\subsection{Isabelle/HOL}
+One family of tools that looks promising in terms of our requirements, is that of \textit{proof assistants} (or \textit{theorem provers}).
+One such tool is `Isabelle' with its `Higher-Order Logic' (`HOL') language~\cite{nipkow2002isabelle}.
+Interesting to us, is the built-in support for generating \LaTeX\ documents akin to how lhs2\TeX\ does this for Haskell.
+However, using the `\LaTeX Sugar' package~\cite{haftmann2026latex}, this can be taken even further, having the ability to not only substitute symbols,
+but also to represent expressions and functions in an entirely different format, like sums using $\sum$, cardinality using $\left|a\right|$ and set notation with braces and set operators (like $\cup$).
+Additionally, Isabelle can insert runtime execution results into the output \LaTeX.
+
+However, HOL makes use of programming-only concepts in the form of imports and explicit type casts~\cite{nipkow2002isabelle}.
+Furthermore, all functions in HOL must be \textit{total}.
+In practice, this means every function must \textit{provably} terminate, which can be non-trivial when it comes to recursive functions.
+In many cases, termination of recursive functions can be proven automatically, but in some cases this fails and a manual proof is required~\cite{krauss2008defining}.
+
+\textbf{Missed requirements:} 5 and 6
+
+\subsection{Acumen}
+The `Acumen' system~\cite{zhu2010mathematical} provides a DSL with which one can model mechanical systems and run physics simulations.
+One of its features is to automatically generate \LaTeX\ representations of the equations written in its DSL, in formal mathematical notation.
+This output mathematical syntax completely hides any programming-only concepts from the reader
+
+Instead of our goal of expressing algorithms and computing values though, this tool is used for writing continuous equations and producing a physics simulation as output.
+As such, it does not fulfill our goal of allowing one to simply write mathematical definitions and inserting results in a text.
+
+\textbf{Missed requirements:} 1 and 4
+
+\section{New architecture}
+\label{section:new-architecture}
+To enable fulfilling all the requirements set out in Section~\ref{section:requirements}, a new architecture is needed.
+The following section covers the design and prototype implementation of a DSL named `Nothing But Math', or `NBM' for short.
+Source files for this DSL use the `.nbm' extension.
+
+NBM should support generation of both a document and program representation from a single source containing intermingled algorithms and text,
+while also allowing the embedding of results in the output \LaTeX.
+To differentiate between algorithms, text and places where results should be embedded, we define three different `sections' of an NBM source file:
+\begin{enumerate}
+  \item `Code' sections are where function definitions are written.
+  \item `Eval' sections allow writing arbitrary NBM expressions. They are replaced by the result of evaluating the NBM expression. 
+  \item `Text' sections are for the text surrounding the code and eval sections. Arbitrary \LaTeX\ can be used here.
+\end{enumerate}
+
+With these sections defined, we can design a compiler pipeline that fits the requirements, shown in Figure~\ref{fig:nbm-pipeline}.
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=\columnwidth]{images/pipeline.png}
+  \caption{NBM compiler pipeline}
+  \label{fig:nbm-pipeline}
+\end{figure}
+
+Starting from the NBM source file, the contents are split into the three different sections.
+After section splitting, the text sections remain unaltered and are immediately ready for \LaTeX\ code generation.
+The code and eval sections are first tokenized and parsed, resulting in `Abstract Syntax Trees' (`ASTs'), which are tree representations of the source's definitions and expressions.
+Global identifiers are then collected, which gives a map of all function definitions and their type signatures.
+This map is then used by both the code and eval sections to run an elaboration phase, which ensures no references are made to undefined identifiers.
+This phase also determines where runtime type casts should be inserted for the Haskell library output.
+The result is what we refer to as an `Intermediate Representation' (`IR'), which in our case is another tree structure with added nodes for type casts.
+From these IR trees, Haskell code can be generated. 
+The code sections get turned into a Haskell library, whereas the eval sections become Haskell expressions.
+The Haskell expressions are then evaluated in the context of the Haskell library, which after some more processing get turned into IR expressions representing the resulting values.
+Finally, with the text sections, code section IR trees and IR expressions the \LaTeX\ document is generated.
+
+With a design for the architecture, we now cover the design of the mathematical notation in the output \LaTeX\ document, 
+how a semantic mapping can be created between it and the output Haskell library and finally the design of the NBM source DSL.
+
+\subsection{LaTeX mathematical notation design}
+\label{section:math-notation}
+As stated in the requirements in Section~\ref{section:requirements}, the document output should be readable for those familiar with mathematics.
+As such, we want the \LaTeX\ output to use mathematical notation.
+There are many dialects of notation out there and many sources, even from the same area of mathematics, use slightly different notation.
+As such, there is no objective `correct' mathematical notation.
+As the author is a student at the University of Twente, it was decided to use study material used by the university as a reference, which the author is familiar with.
+Specifically the books used for Abstract Algebra by Judson~\cite{judson2023abstract} and Discrete Mathematics by Grimaldi~\cite{grimaldi2004discrete} were chosen,
+as they introduce mathematical notation for all the concepts needed within the scope of this design.
+
+Traditionally, many representations of algorithms in text follow a procedural approach with mutable variables~\cite{von2013modern, cohen2013course, shoup2008computational, jenkyns2018fundamentals, menezes2018handbook}.
+In mathematics, however, variables are immutable.
+It is not possible to state $a = 1$ and then state $a = 2$.
+NBM is designed to instead represent algorithms using recursive functions and immutable variables.
+
+As such, mathematical notation for defining functions is needed.
+A function definition generally has three parts: a signature, an implementation and an optional set of constraints.
+
+For a function $f$, an example signature could be $f : \mathbb{Z} \times \mathbb{Z} \to \mathbb{Q}$, meaning it takes two integer values as arguments and produces a rational value.
+These symbols, $\mathbb{Z}$ and $\mathbb{Q}$, denote \textit{sets} of numbers, where in a signature they act like \textit{types} in programming.
+A full listing of all set symbols, plus all other mathematical notation used, can be found in Appendix~\ref{appendix:notation}, Table~\ref{table:math-notation}.
+
+The implementation part of a function specifies the behaviour of the function.
+With the aforementioned function $f$, an implementation could be $f(a, b) = \frac{a}{c}$.
+
+Function implementations can also have conditional branches~\cite[p.~5]{zhu2010mathematical}.
+A function like this is referred to as a `piecewise function'.
+For a function $pos : \mathbb{N} \to \mathbb{Z}^+$, an example could be:\\
+$pos\left(a\right) = \begin{cases}
+  1 & \text{if}~a = 0\\
+  a & \text{otherwise}
+\end{cases}$
+
+The constraints part of a function definition specifies any conditions that should hold when calling the function.
+Essentially, any operation or predicate giving a boolean value could be allowed here.
+For our function $f$, this could be a constraint like $b \neq -1$.
+One interesting aspect to highlight is how while in programming a distinction is made between a declaration and equality check, the same is usually not done in mathematics.
+Instead, the same equality "=" symbol can be used to express both.
+Going further, there is not necessarily a distinction in meaning.
+A declaration for "a = 1" is specifying a truth that holds within a certain context, namely that a is equal to one, just like an equality check would.
+With this idea, we can put not only traditional constraints in the "where" clause, but could also allow local declarations, like $c = b + 1$.
+These can aid in readability of a function, especially when there are duplicated parts, which can then be deduplicated and given a local declaration instead.
+
+% TODO: rewrite this to be clearer/more concise. At least explain how <> syntax works
+Now, how do we combine these three parts of a function definition together?
+One example can be taken from Grimaldi~\cite[Sec.~5.2]{grimaldi2004discrete}.
+This book mostly follows the "<signature> where <implementation> for <constraints>" style for inline definitions (see Example 5.13).
+It should be noted however that even within this book there are many different variations of notation.
+There are times it uses the "where" clause to define constraints (see Example 5.11), "with" (see Definition 5.5) and "for" (see Example 5.13).
+Judson~\cite[Sec.~11.2]{judson2023abstract} uses similar notation, with "Define <signature> by <implementation>".
+Another style that appears in this book is "<signature> defined by <implementation> where/for <constraints>" (see Exercise 11.4.2 and Exercise 11.5.2).
+
+As there is no exact standard notation for defining functions, it seems the best option is to choose notation that is common and clear, while also giving us the features we need.
+Furthermore, as these function definitions will be presented in a text, it would be beneficial if it somewhat reads like a sentence. % (TODO: consider mentioning the literate programming thingies here)
+This rules out styles like "<signature> defined by <implementation> where/for <constraints>".
+The "<signature> where <implementation> for <constraints>" style is better in this regard, 
+but still feels less like a sentence than the "Define <signature> by <implementation>" style.
+
+To allow for adding constraints to a function definition, we saw clauses like "for", "where" and "with".
+In general, the "where" clause appears to be the most widely used.
+Therefore, we will be going with the "Define <signature> by <implementation> where <constraints>" style.
+
+How these function definitions are formatted in a text also varies.
+Both Grimaldi~\cite{grimaldi2004discrete} and Judson~\cite{judson2023abstract} seem to have what we will call an in-line (where a definition is placed within a paragraph like a sentence), 
+in-text (where a definition is placed on multiple lines) and numbered definition representation.
+
+As such, we would want our tool to support these different representations too. An in-line representation would be: <<<
+#[inline]
+f : Z x Z -> Q
+f(a, b) := a / c
+where b /= -1, c := b + 1
+>>> An in-text one would be:
+<<<
+f1 : Z x Z -> Q
+f1(a, b) := a / c
+where  b /= -1, c := b + 1
+>>>
+
+Then finally the numbered definition representation could be what is shown by Definition~\ref{def:f2}.
+<<<
+#[box, name="Fraction", description="Constructs a fraction of two numbers a and b, with the denominator incremented by 1", label="def:f2"]
+f2 : Z x Z -> Q
+f2(a, b) := a / c
+where  b /= -1, c := b + 1
+>>>
+
+A full listing of all mathematical notation used can be found in Appendix~\ref{appendix:notation}, Table~\ref{table:math-notation}.
+
+\subsection{Mapping to Haskell}
+\label{section:mapping-to-haskell}
+When it comes to mapping this mathematical notation to Haskell, most cases are rather trivial.  
+There are a few exceptions, however.
+
+First, as computers have finite memory, they cannot give exact representations of real numbers.
+Instead, it was chosen to represent these with double-precision float numbers, Haskell's \texttt{Double} type.
+
+Second, although there is no distinction between a constraint checking for equality and one declaring a local variable in the mathematical notation we determined, there is in Haskell. 
+Equality constraints should be checked using \texttt{==} in a conditional branch, while local declarations should be written using \texttt{=} in Haskell's `where' clause.
+This ambiguity is resolved by using different syntax for the two in the DSL.
+
+Third, the order of evaluation of constraints and the implementation matters.   % TODO: add better explanation here
+Constraints placed on function arguments must be checked first, after which the local declarations should be resolved and any constraints placed on those should be evaluated.
+When constraints are not met, a runtime error should be thrown.
+Only after that should the actual function implementation be evaluated.
+To achieve this, we can write a Haskell function using the format shown in Figure~\ref{fig:haskell-template}.
+
+\begin{figure}[!ht]
+  \begin{verbatim}
+name :: <arg_types> -> <return_type>
+name args | <arg_constraints> = error "..."
+          | <local_constraints> = error "..."
+          | <implementation>
+  where
+    <local_declarations>
+  \end{verbatim}
+  \caption{Template for mathematical function translation to Haskell}
+  \label{fig:haskell-template}
+\end{figure}
+
+Finally, Haskell requires explicit type casting in some scenarios.
+Take the following example: <<<
+#[inline]
+ex1 : Z
+ex1 := sqrt 9
+>>> The Haskell \texttt{sqrt} function returns a floating point number, which we would represent as $\mathbb{R}$, a real number.
+In this case we would need a runtime cast, converting the floating point number to an integer.
+The need for runtime casts has to be taken into account for an implementation of the NBM compiler.
+
+A full mapping of all used mathematical notation to Haskell can be found in Appendix~\ref{appendix:notation}, Table~\ref{table:math-haskell-translation}.
+
+\subsection{DSL design}
+As shown before in Figure~\ref{fig:nbm-pipeline}, the NBM source is split into code, eval and text sections.
+The compiler will need to be able to differentiate between them.
+As such, code and eval sections are explicitly started and ended by using specific sequences of symbols.
+The start of a code section is denoted by three `<' symbols in a row and ended by three `>' symbols.
+Eval sections are started with three `\{' symbols and ended with three `\}' symbols.
+These sequences were chosen as they are not used in regular \LaTeX, avoiding unwanted code and eval sections.
+
+For the syntax within code and eval sections, we design it to make it resemble the \LaTeX\ mathematical notation output as much as possible.
+This is to make writing with the DSL almost as easy as reading its document output.
+Figure~\ref{fig:dsl-example} shows an example of the DSL syntax for defining the aforementioned example function $f$ from Section~\ref{section:math-notation}.
+Note its resemblance to the \LaTeX\ mathematical notation we designed.
+
+\begin{figure}[!ht]
+  \begin{verbatim}
+f : Z x Z -> Q
+f(a, b) := a / c
+where b /= -1, c := b + 1
+  \end{verbatim}
+  \caption{Example of a function definition written in the DSL}
+  \label{fig:dsl-example}
+\end{figure}
+
+The DSL also allows defining piecewise functions. An example is shown in Figure~\ref{fig:dsl-example-2}, implementing the aforementioned example function $pos$ from Section~\ref{section:math-notation}.
+
+\begin{figure}[!ht]
+  \begin{verbatim}
+pos : N -> Z+
+pos(a) := {
+  1   if a = 0
+  a   otherwise
+}
+  \end{verbatim}
+  \caption{Example of a piecewise function definition written in the DSL}
+  \label{fig:dsl-example-2}
+\end{figure}
+
+Note that the DSL has different syntax for an assignment operator (\texttt{:=}) and an equality operator (\texttt{=}).
+This resolves the aforementioned ambiguity.
+
+To support the different formatting styles (in-line, in-text and numbered definitions) described in Section~\ref{section:math-notation},
+the DSL features optional annotations.
+This includes section-level annotations written with a `hash' symbol like \texttt{\#[<key>]} and definition-level annotations written with an `at' symbol like \texttt{@[<key>]}.
+A block-level annotation configures styling for an entire code section and is written before any definitions in that code block.
+A definition-level annotation configures styling for a single definition and is written right before a definition.
+
+For the different formatting styles, we use section-level annotations:
+\begin{itemize}
+  \item for in-line we use \texttt{\#[inline]};
+  \item for numbered definitions we use \texttt{\#[box]}, which also optionally allows more fields like a name and description;
+  \item in-text is the default;
+  \item there is also an \texttt{\#[intext]} annotation, which looks almost the same as the default, but uses table-friendly \LaTeX, enabling displaying definitions inside tables; and
+  \item the \texttt{\#[hidden]} annotation allows an entire code section to be omitted from the output \LaTeX.
+\end{itemize}
+
+The only definition-level annotation that exists is \texttt{@[hidden]}, which simply excludes a single definition from the \LaTeX\ output, as opposed to a whole code section.
+
+\subsection{Implementation details}
+\label{section:implementation-details}
+With the design of the full NBM compiler pipeline, plus its inputs and outputs, a prototype implementation was made.
+This section covers the most interesting parts of this specific implementation, which affect the behaviour of the tool.
+
+\subsubsection{Prelude}
+First is the use of a \textit{prelude} that is appended to the output Haskell library.
+This prelude is essentially a set of functions and types that implement some custom functionality for the Haskell library output.
+Specifically, the prelude contains a definition for a custom \texttt{Positive} number type, plus functions for casting any number type to any other number type.
+
+The \texttt{Positive} number type is what the \texttt{Z+} type in the NBM DSL is compiled to, allowing only positive integer numbers ($\{1, 2, 3, \dots\}$).
+Haskell provides no type representing this set of numbers, thus requiring a custom implementation of one.
+
+The functions for casting between number types consists of functions for \textit{widening} and \textit{narrowing} types.
+Widening refers to casting a number with some type to some other type that is a supertype of it, also known as \textit{upcasting}. 
+This is a \textit{safe} operation, as a number can always be represented by a supertype of it.\footnote{Real numbers, which are a supertype of all other number types in NBM, are slightly different in this regard as they are not exact representations.}
+As an example, any integer number is also a rational number.
+Narrowing, also known as \textit{downcasting}, is the opposite and is an \textit{unsafe} operation.
+Not all numbers of a supertype are members of a subtype of it.
+Think of how the rational number $\frac{1}{2}$ is not a valid integer.
+
+Consequently, the \textit{Prelude} functions for narrowing can throw runtime errors, in the case a type cast is invalid.
+For every supertype, a rule is defined to determine whether a member of it can fit in a subtype.
+For example, any rational number with a denominator of 1 is a valid integer.
+Things get messy in the case of real numbers, which are represented with Haskell's \textit{Double} type, which uses a floating-point number representation.
+As the floating-point representation of numbers is not exact, numbers that are members of a subtype like $\frac{1}{3}$, slightly drift from their original value when represented with a \textit{Double}.
+To still allow narrowing real numbers in some cases, the decision was made to instead use a \textit{threshold}, allowing narrowing when close enough to a whole number.\footnote{We round to a whole number instead of a rational number as rational numbers can be arbitrarily precise, meaning there is no `nearest' rational number.} 
+
+\subsubsection{Automatic runtime cast insertion}
+As a design requirement of the DSL was to not need explicit type casts, the compiler instead automatically determines where runtime type casts need to be inserted in expressions.
+The leaves of an expression's AST consist of immediate values (number/boolean literals, like \texttt{1} or \texttt{True}) and references to identifiers.
+The compiler first determines the types of these leaf nodes, choosing the most narrow number type possible for number literals and looking up an identifier's type from the known scope.
+From the leaves of an expression's AST, the compiler looks at a parent node to determine what types the children are \textit{expected} to be.
+What this expectation is depends on the parent and children nodes.
+For example, most arithmetic operations expect both operands to be of the same type and function calls expect their arguments to match the expected parameter types.
+When there is a mismatch in the expected type and the actual type, a type cast is inserted.\footnote{Note that the compiler will never insert casts from/to a boolean, instead throwing a compile-time error.}
+
+At the very end, when the result type of an expression has been determined, the compiler again looks at what the \textit{expected} result type of the expression is.
+If the result of the expression is the result of the function, the expression's type is checked against the function's return type, inserting a cast if there is a mismatch.
+A similar check occurs for the condition expressions in piecewise functions, instead throwing a runtime error if it is not a boolean.
+For local declarations, as there is no known type, anything is accepted.
+
+\subsubsection{Evaluation pipeline}
+In Figure~\ref{fig:nbm-pipeline}, we show Haskell expressions originating from NBM eval sections are evaluated, resulting in IR expressions.
+The inner workings of this evaluation step are nontrivial.
+
+First, we use the GHC Haskell compiler to compile the generated Haskell library and evaluate the Haskell expressions.
+The result is a number of strings giving a Haskell representation of the return values.
+In most cases, this string representation is entirely valid in our NBM DSL, allowing us to use the same tokenizing, parsing and elaboration phases to convert them to IR expressions.
+In the case of rational numbers, however, the Haskell representation denotes them as `\texttt{a \% b}', whereas the NBM DSL uses `\texttt{a / b}'.
+Therefore, a simple pass over the resulting strings replacing all `\%' symbols with `/' symbols is used before further processing.
+
+\subsection{Workflows}
+The NBM compiler is used through the NBM `Command-Line Interface' (`CLI') tool~\ref{}. % TODO: reference GitHub repo here
+When installed, one can type `nbm' into a terminal, followed by a path to a source file and some optional settings for the output.
+To allow for different workflows, it allows specifying an output directory, where it will write the generated .hs and .tex files.
+Additionally, the user can optionally have their output \LaTeX\ be wrapped in a minimal template to prepare it for PDF compilation.
+Finally, the user can have the tool automatically create a PDF file from the output \LaTeX.
+With these options, it is easy to get started with the tool and experiment, while still allowing one to use their own \LaTeX\ template and handle more complex PDF compilation themselves.
+
+As a demonstration this research paper was written in NBM and uses the CLI, but without using those options of wrapping the \LaTeX\ output and automatic PDF compilation.
+Instead, it was used to work with an existing \LaTeX\ template and compiled with a custom script that supports Bib\TeX.
+
+\section{Verification}
+% TODO: add part about HCI to test usability as Future Work research
+To verify the DSL design is viable for the field of Computational Number Theory, 
+its prototype implementation should be able to express some basic algorithms in the field.
+An overview of the chosen algorithms is given in Table~\ref{table:algorithm-citations}.
+\begin{table}[!ht]
+  \centering
+  \small
+  \begin{tabularx}{\columnwidth}{l X}
+    \toprule
+    \textbf{Algorithm} & \textbf{References} \\
+    \midrule
+    Euclidean                 & \cite{von2013modern, cohen2013course, shoup2008computational}, \cite[Sec.~1.2.6]{jenkyns2018fundamentals}, \cite[Sec.~2.4.2]{menezes2018handbook} \\
+    Extended Euclidean        & \cite{von2013modern, cohen2013course, shoup2008computational}, \cite[Sec.~1.2.6]{jenkyns2018fundamentals}, \cite[Sec.~2.4.2]{menezes2018handbook} \\
+    Modular Inverses          & \cite{von2013modern, shoup2008computational} \\
+    Repeated Squaring         & \cite{von2013modern}, \cite[Sec.~1.2]{cohen2013course} \\
+    Prime Testing             & \cite{jenkyns2018fundamentals} \\
+    Integer Square Root       & \cite{cohen2013course} \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Algorithms the prototype implementation should support and their literature sources. (Section/page numbers given when not clearly stated in Table of Contents)}
+  \label{table:algorithm-citations}
+\end{table}
+
+This specific set of algorithms was chosen, as it covers a minimal yet representative set of core features used in algorithms, including basic arithmetic, handling multiple state variables, conditional branching, constraints on function domain/codomain and boolean predicate logic.
+
+\subsection{Implementation case study}
+\label{section:euclidean-case-study}
+To demonstrate the prototype compiler pipeline and verify the requirements, 
+we present a case study of the Euclidean algorithm implementation shown in Figure~\ref{fig:euclidean-nbm}.
+
+\begin{figure}[!ht]
+  \centering
+
+  \textbf{NBM Source Code}\\
+  \begin{verbatim}
+gcd : N x N -> Z+
+gcd(a, b) := {
+    a                   if b = 0
+    gcd(b, a mod b)     otherwise
+} where a >= b
+  \end{verbatim}
+
+  \textbf{Generated \LaTeX\ output}
+<<<
+gcd : N x N -> Z+
+gcd(a, b) := {
+    a                   if b = 0
+    gcd(b, a mod b)     otherwise
+} where a >= b
+>>>
+
+  \textbf{Embedded evaluation results}\\
+{{{gcd(1, 0)}}}, 
+{{{gcd(12, 9)}}} and 
+{{{gcd(27, 14)}}}. 
+
+  \caption{Euclidean algorithm implemented in NBM, with source code, resulting \LaTeX\ and embedded evaluation results.}
+  \label{fig:euclidean-nbm}
+\end{figure}
+
+In Figure~\ref{fig:euclidean-nbm}, we see the NBM source code for a recursive implementation of the Euclidean algorithm for finding the greatest common divider of two numbers.
+The generated \LaTeX\ output shown below uses the exact same source code, encased in a code section starting with three `<' and ending with three `>' symbols.
+The embedded evaluation results originate from three separate eval sections, containing just the source text \texttt{gcd(1, 0)}, \texttt{gcd(12, 9)} and \text{gcd(27, 14)} respectively, each encased in an eval section starting with three `\{' and ending with three `\} symbols'.
+
+Attempting evaluation of expressions such as $gcd(1, -1)$, $gcd(0, 0)$ or $gcd(9, 12)$ instead results in an error, as the argument or return values do not fit the constraints specified in the $gcd$ function definition.
+
+Implementations of the other algorithms from Table~\ref{table:algorithm-citations}, including source code and output \LaTeX, can be found in Appendix~\ref{appendix:algorithms-nbm}, Table~\ref{table:algorithms-nbm}.
+For the purpose of demonstration, it is also possible to evaluate expressions using them in this part of the text: 
+{{{modInv(29, 12)}}}, {{{isPrime(7)}}} and {{{isqrt(19)}}}.
+
+To verify the claim of the shown results being generated by the NBM compiler, refer to the published source file of this research paper~\cite{}. % TODO: made source file reference for this paper so we can reference it as proof
+
+\subsection{Requirement verification}
+Going over the requirements set out in Section~\ref{section:requirements}, we see the tool is able to:
+\begin{enumerate}
+  \item generate both a document and program representation from a single source containing intermingled algorithms and text, shown by this file itself~\cite{};  % TODO: cite this paper's source file here
+  \item keep the \LaTeX\ ecosystem of packages available, as it is essentially a pre-processor producing a regular \LaTeX\ file;
+  \item have the document output be readable for those familiar with mathematics, as seen by the mathematical notation output of the case study above;  % TODO: mention potential HCI study here for Future Work?
+  \item automatically embed results into the generated document, seen by the evaluated expressions in the case study;
+  \item provide a DSL that does not require knowledge of programming-only concepts like imports or explicit type casting, which we see are not present in the source code; and
+  \item ensure users of the DSL only need to write function definitions, without the need for mathematical proofs, which NBM does not implement.
+\end{enumerate}
+
+\section{Discussion}
+Through the prototype implementation of the NBM compiler, the design of the DSL presented in this paper was shown to be able to represent the chosen set of algorithms from Table~\ref{table:algorithm-citations}.
+This section answers the research question, starting with its supporting sub-questions.
+\\
+\\
+\textbf{Sub-question~\ref{srq1}:} \textit{``To what extent can standard mathematical notation for Computational Number Theory be mapped to Haskell while preserving semantic intent?''}\\
+The mathematical notation for Computational Number Theory can be mapped to Haskell while preserving semantic intent almost perfectly,
+with the only exception that cannot be solved by the DSL being the imperfect representation of real numbers.
+An exact representation of a real number like $sqrt(2)$ would require infinite memory.
+Instead, a compromise is made by using Haskell's \texttt{Double} type, which provides an approximation.
+Consequently, the results of operations like \texttt{0.1 + 0.2} are not exact, in this case resulting in \texttt{0.30000000000000004}.
+To somewhat remedy this, NBM allows casting real numbers to whole numbers if they are `close enough', allowing definitions like: <<<
+#[inline]
+p : Z
+p := 10 * (0.1 + 0.2)
+>>> Where evaluation gives: {{{p}}}.
+\\
+\\
+\textbf{Sub-question~\ref{srq2}:} \textit{``What syntax and annotations are necessary for a DSL to support both high-quality document generation and correct executable code generation?''}\\
+A syntax that can map to both the document and code outputs without ambiguities after an elaboration phase, is sufficient. 
+In mathematical texts, annotations that allow different formatting are needed, as they rely on giving both short-form definitions
+and standalone, nicely presented multiline definitions that can be referenced throughout the text.
+Note that the annotations in NBM are tailored to the domain of Computational Number Theory.
+The requirements for annotations could differ per domain.
+\\
+\\
+\textbf{Sub-question~\ref{srq3}:} \textit{``What design trade-offs arise between usability for scientists and formal explicitness in such a DSL?''}\\
+The trade-offs arise surrounding explicit type casting and mathematical proofs of termination.
+First, there is a trade-off between having type casts be explicit or implicit.
+If explicit type casts were required, it would on the one hand hinder usability for scientists, as it would introduce the programming-only concept of type casting and come with a bigger mental overhead as the developer needs to keep track of every result type in every part of an expression.
+On the other hand, it would allow more precise control of what runtime type casts happen where.
+Second, there is a trade-off between requiring proof of every recursive function being total or trusting the developer that every function terminates.
+If required, it would greatly increase complexity and implementation time for the developers, no longer allowing one to quickly write any total function definition without a proof.
+Although, it would ensure no function can fall into an infinite loop and make evaluation never terminate.
+What options should be chosen depends on the goal of the tool.
+As the goal of this DSL is to make writing mathematical definitions easy and accessible, the options of implicit type casts and no requirement of proofs were chosen.
+\\
+\\
+\textbf{Main research question:} \textit{``How can a Domain-Specific Language be designed to bridge mathematical notation and functional programming into a single source for scientists, specifically within the domain of Computational Number Theory?''}\\
+To design a DSL to bridge mathematics and functional programming into a single source for scientists,
+there are many things to consider.
+First, one must find what mathematical notation is necessary to express problems in a given area of mathematics, 
+after which a mapping from this notation to the chosen functional programming language must be made,
+taking note of any potential ambiguities.
+Second, it is important to consider \textit{how} mathematical definitions are presented in text,
+finding different formatting styles and layouts 
+and adding support for the option to present mathematical definitions in these different ways.
+Third, many design decisions come with trade-offs and what options should be chosen depends on the target audience of the tool.
+In our case, as the aim was to create a tool that is accessible to a wider range of STEM-field scientists, easy of use was chosen over formal explicitness.
+
+\section{Conclusions}
+To bridge the gap between mathematics and programming, this research investigated the design of a tool capable of generating both a document with mathematical notation and a functional code library from a single source, 
+while supporting the automatic embedding of execution results. 
+To validate this design, a prototype implementation of a compiler was made and tested against a set of algorithms in the domain of Computational Number Theory.
+The results show providing mathematical definitions, computer code and execution results can be simple and free from manual errors.
+The NBM tool has now been used in one piece of literature, namely this paper itself.
+Hopefully, many more will follow a similar single-source approach in the future.
+
+
+\section{Future work}
+\label{section:future-work}
+With the limited time budget for this project, there are still many things that could be expanded upon.
+This section provides some suggestions for possible future research.
+
+Perhaps most obvious would be expanding the scope of mathematical notation and concepts the DSL can support.
+The current design was shaped around a limited set of algorithms, in the limited area of Computational Number Theory.
+Imagine researching ways to add support for lists, matrices, sets, user-defined types and many more mathematical constructs, operations and functions.
+
+To make the reproducible science aspect of the tool more useful, a great addition would be the ability to use external datasets as input
+and automatically create tables, graphs and plots as output.
+
+The current implementation of the NBM compiler also comes with some technical limitations.
+For example, the current implementation does not support referencing local declarations in other local declarations, local declaration of functions and higher-order functions.
+
+A more advanced type system could also reject more incorrect definitions at compile-time and allow for more exact expression of a function's argument and return types.
+Think of a type checker that starts from the return type of a function, 
+setting constraints on the expected type as it walks down the AST through conditional branches, functions and operations
+and then determining at the very end whether or not there is a path from every branch where with only guaranteed safe type casts the result value arrives at the correct type,
+completely eliminating unsafe runtime type casts.
+A system like this could also support arbitrary constraints on types, like specifying the return type should be a value in the set of all integers except five ($\mathbb{Z}_{\neq 5}$), or either one, two or three ($\{1, 2, 3\}$).
+Imagine being able to use set operations for types, like unions, intersections and differences.
+Types dependant on the given arguments could also be very useful, like defining some function that guarantees in its type signature it will return a list of the same length as the one it was given, or maybe always half the length. 
+
+Even then, there are many more things that could be added or improved, like better error messages,
+more \LaTeX\ annotations, 
+implementing a language server for syntax highlighting, code completion and in-editor errors, 
+improving evaluation performance,
+making the generated Haskell output less messy,
+improving the performance of the generated Haskell and
+probably many more things we have not even thought of.
+
+\begin{acks}
+  I would like to thank Dr.~Peter Lammich for his supervision of this research, 
+  allowing me to pursue my own research project topic and providing the necessary guidance to develop a working prototype.
+  Additionally, I thank the various reviewers of this paper for their feedback, which helped greatly improve the quality of this work.
+\end{acks}
+
+
+
+%%
+%% The next two lines define the bibliography style to be used, and
+%% the bibliography file.
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{sources}    % TODO: ensure referencing style (pages vs chapters, names, etc. is consistent)
+
+\appendix
+\section{Statement on the use of AI}
+In the writing process, AI was used to aid in learning how to use specific \LaTeX\ functionality such as tables, figures and other special in-text formatting options. 
+
+In the implementation process, AI was used to aid in learning how to use the chosen parsing library and for writing code documentation.
+Any generated code and documentation was carefully inspected and changed where necessary before usage.
+
+\onecolumn
+
+\section{Mathematical notation and Haskell syntax}
+\label{appendix:notation}
+\begin{xltabular}{\textwidth}{l X}
+  \toprule
+  \textbf{Notation} & \textbf{Meaning} \\
+  \midrule
+
+  \multicolumn{2}{l}{\textbf{Sets and constructs}} \\
+  \midrule
+  $\mathbb{N}$ & Set of all natural numbers. $\mathbb{N} = \{0, 1, 2, ...\}$\\
+  $\mathbb{Z}$ & Set of all integers. $\mathbb{Z} = \{..., -2, -1, 0, 1, 2, ...\}$\\
+  $\mathbb{Z}^+$ & Set of all positive integers. $\mathbb{Z}^+ = \{1, 2, ...\}$\\
+  $\mathbb{Q}$ & Set of all rational numbers\\
+  $\mathbb{R}$ & Set of all real numbers\\
+  $\mathbb{B}$ & Set of all booleans~\cite[p.~73]{cortadella2002logic}. $\mathbb{B} = \{True, False\}$\footnote{Grimaldi~\cite[p.~49]{grimaldi2004discrete} shows using $true$ and $false$ for boolean values. The author decided to capitalise these values to make them stand out from lowercase keywords in the language (e.g. `if', `otherwise' and `where').}\\
+  $\mathbb{N} \times \mathbb{Z} \times \mathbb{Z}^+$ & Set of all ordered tuples of all natural numbers, integers and positive integers. E.g. (0, -1, 1)\\
+  \midrule
+
+  \multicolumn{2}{l}{\textbf{Functions and constants}} \\
+  \midrule
+  \makecell{Define \texttt{<signature>} by \\ \texttt{<implementation>} \\ where \texttt{<constraints>}} & Function or constant definition~\cite[p.~135]{judson2023abstract}, \cite[p.~254]{grimaldi2004discrete}. \\
+  $f : \mathbb{N} \times \mathbb{N} \to \mathbb{N}$ & Function or constant signature. Here: function f, which takes two natural numbers, maps to a natural number. \\
+  $f(a, b) = a + b + c$ & Function or constant implementation. Here: function f adds two numbers and adds some value $c$ to the result. \\
+  $a \geq b, a > 50 \text{ and } c = ab$ & Function or constant constraints. Here: $a$ is greater than or equal to $b$, $a$ is greater than 50 and $c$ is equal to $a$ times $b$. \\
+  \makecell{$min(a, b) = \begin{cases}
+  a & \text{if } a < b \\
+  b & \text{otherwise}
+  \end{cases}$} & Piecewise function implementation~\cite[p.~5]{zhu2010mathematical}. Here: return $a$ when $a$ is less than $b$, otherwise return $b$. \\
+  $f(1, 2)$ & Function call. Here: call $f$ with $a = 1$ and $b = 2$. \\
+  \midrule
+  
+  \multicolumn{2}{l}{\textbf{Operations}} \\
+  \midrule
+  $a + b$ & Addition of $a$ and $b$ \\
+  $a - b$ & Difference of $a$ and $b$ \\
+  $-a$ & Unary negation of $a$ \\
+  $a \cdot b$ & Product of $a$ and $b$ \\
+  $\frac{a}{b}$ & Fraction of $a$ over $b$ \\
+  $a^b$ & $a$ to the $b_{th}$ power \\
+  $\sqrt{a}$ & Square root of $a$ \\
+  $a \bmod b$ & Remainder of $a$ divided by $b$ \\
+  $\lfloor a \rfloor$ & Floor of $a$. Closest integer less than or equal to $a$ \\
+  $a = b$ & $True$ if $a$ and $b$ are equal \\
+  $a \neq b$ & $True$ if $a$ and $b$ are not equal \\
+  $a < b$ & $True$ if $a$ is strictly less than $b$ \\
+  $a > b$ & $True$ if $a$ is strictly greater than $b$ \\
+  $a \leq b$ & $True$ if $a$ is less than or equal to $b$ \\
+  $a \geq b$ & $True$ if $a$ is greater than or equal to $b$ \\
+  $a \mid b$ & $True$ if $a$ divides $b$ \\
+  $p \land q$ & $True$ if $p$ and $q$ are both $True$ \\
+  $p \lor q$ & $True$ if $p$ or $q$ is $True$ \\
+  $\neg p$ & $True$ if $p$ is $False$ \\
+  \bottomrule
+  \caption{Mathematical notation. Any notation without citation is taken from \cite[pp.~ii--iii]{grimaldi2004discrete} and \cite[pp.~333--335]{judson2023abstract}.}
+  \label{table:math-notation}
+\end{xltabular}
+
+\begin{xltabular}{\textwidth}{l X X}
+  \toprule
+  \textbf{Notation} & \textbf{Haskell translation} & \textbf{Notes} \\
+  \midrule
+
+  \multicolumn{3}{l}{\textbf{Sets and constructs}} \\
+  \midrule
+  $\mathbb{N}$ & \texttt{Natural} \\
+  $\mathbb{Z}$ & \texttt{Integer} \\
+  $\mathbb{Z}^+$ & \texttt{Positive} & Custom Positive type in the Prelude, holding a Natural with an additional $\neq 0$ constraint check on creation\\
+  $\mathbb{Q}$ & \texttt{Rational} & This is an alias for "Ratio Integer", meaning any fractions using Naturals, which are "Ratio Natural", will need to have their operands be converted to Integers first. \\
+  $\mathbb{R}$ & \texttt{Double} & Unlike the type translations before, this one is not arbitrary precision, meaning some accuracy is lost. This appears to be an unavoidable compromise. As we make fractions return rational numbers, however, this type is avoided as much as possible\\
+  $\mathbb{B}$ & \texttt{Bool} \\
+  $\mathbb{N} \times \mathbb{Z} \times \mathbb{Z}^+$ & \makecell{for function arguments:\\\texttt{Natural -> Integer -> Natural} \\ \\ for function return types:\\\texttt{(Natural, Integer, Natural)}} & Here the generated Haskell differs depending on if the tuple is for a function's arguments (expressed as individual arguments) or a returned tuple (expressed as a single composite value). We could make both use the composite value approach, but this would result in less idiomatic Haskell, always using tuples for any functions with multiple arguments\\
+  \midrule
+
+  \multicolumn{3}{l}{\textbf{Functions and constants}} \\
+  \midrule
+  \makecell{Define \texttt{<signature>} by \\ \texttt{<implementation>} \\ where \texttt{<constraints>}} & See Section~\ref{section:mapping-to-haskell} \\
+  \midrule
+  
+  \multicolumn{3}{l}{\textbf{Operations} (operate only on number types unless stated otherwise)} \\
+  \midrule
+  $a + b$ & \texttt{a + b} & Widens operands and result to widest type of $a$ and $b$ \\
+  $a - b$ & \texttt{a - b} & Widens operands and result to widest type of $a$ and $b$, at least Integer (to allow negative results)\\
+  $-a$ & \texttt{-a} & Widens operand and result to at least Integer (to allow negative results) \\
+  $a \cdot b$ & \texttt{a * b} & Widens operands and result to widest type of $a$ and $b$ \\
+  $\frac{a}{b}$ & \texttt{a \% b (or a / b)} & Widens operands to widest type of $a$ and $b$, at least Integer. Returns Rational (if neither operand is Double) or Double (otherwise). Translates to \texttt{\%} by default and to \texttt{/} if numerator or denominator are already fractions. Crashes if $b = 0$ \\
+  $a^b$ & \texttt{a \^{} b (or a \^{}\^{} b or a ** b)} & If type of $b$ is (at most) Natural, widens b to Natural (Haskell needs 0 to exist), translates to \texttt{\^{}} and returns type of $a$. If type of $b$ is Integer, widens $a$ and result to at least Rational and translates to \texttt{\^{}\^{}}. Otherwise widens operands to Double, translates to \texttt{**} and returns Double \\
+  $\sqrt{a}$ & \texttt{sqrt a} & Widens operand to Double. Returns Double \\  
+  $a \bmod b$ & \texttt{a \`{}mod\`{} b} & Widens operands and result to at least Natural (Haskell needs 0 to exist) and narrows to at most Integer. Must have $b$ be a positive integer \\
+  $\lfloor a \rfloor$ & \texttt{floor} a & Only defined when $a$ is Rational or Double. Returns Integer \\
+  $a = b$ & \texttt{a = b (or a == b)} & Translates to \texttt{=} for declarations and \texttt{==} for equality checks. Equality check is defined for all operand types, widens operands to smallest common supertype of $a$ and $b$, then returns Bool \\
+  $a \neq b$ & \texttt{a /= b} & Defined for all operand types. Widens operands to smallest common supertype of $a$ and $b$. Returns Bool \\
+  $a < b$ & \texttt{a < b} & Widens operands and result to widest type of $a$ and $b$. Returns Bool \\
+  $a > b$ & \texttt{a > b} & Widens operands and result to widest type of $a$ and $b$. Returns Bool \\
+  $a \leq b$ & \texttt{a <= b} & Widens operands and result to widest type of $a$ and $b$. Returns Bool \\
+  $a \geq b$ & \texttt{a >= b} & Widens operands and result to widest type of $a$ and $b$. Returns Bool \\
+  $a \mid b$ & \texttt{b \`{}mod\`{} a == 0} & Widens operands to at least Natural (Haskell needs 0 to exist) and narrows to at most Integer. Returns Bool. Crashes if $a = 0$ \\
+  $p \land q$ & \texttt{p \&\& q} & Defined only for operands of type Bool. Returns Bool \\
+  $p \lor q$ & \texttt{p || q} & Defined only for operands of type Bool. Returns Bool \\
+  $\neg p$ & \texttt{not p} & Defined only for operand of type Bool. Returns Bool \\
+
+  \bottomrule
+  \caption{Math to Haskell translation}
+  \label{table:math-haskell-translation}
+\end{xltabular}
+
+\section{Algorithms implemented in NBM}
+\label{appendix:algorithms-nbm}
+\begin{SaveVerbatim}{ExtendedEuclideanSource} 
+egcd : N x N -> Z+ x Z x Z
+egcd(a, b) := {
+    (a, 1, 0)                       if b = 0
+    (g, y, x - floor (a / b) * y)   otherwise
+} where a >= b, (g, x, y) := egcd(b, a mod b)
+\end{SaveVerbatim}
+\begin{SaveVerbatim}{ModInvSource} 
+modInv : N x Z+ -> Z+
+modInv(a, m) := x mod m
+where (g, x, y) := egcd(a, m), g = 1
+\end{SaveVerbatim}
+\begin{SaveVerbatim}{FastExpSource} 
+fastExp : R x N -> R
+fastExp(a, n) := {
+    1       if n = 0
+    r       if 2 | n
+    a * r   otherwise
+} where r := fastExp(a ^ 2, floor (n / 2))
+\end{SaveVerbatim}
+\begin{SaveVerbatim}{PrimeTestSource} 
+isPrime : N -> B
+isPrime(n) := {
+    False                           if n < 2
+    check(n, 2, floor (sqrt n))     otherwise
+}
+
+check : N x N x N -> B
+check(n, t, l) := {
+    True                if t > l
+    False               if t | n
+    check(n, t + 1, l)  otherwise
+}
+\end{SaveVerbatim}
+\begin{SaveVerbatim}{IntSqrtSource} 
+isqrt : Z+ -> Z+
+isqrt(n) := newtIter(n, n)
+
+newtIter : Z+ x Z+ -> Z+
+newtIter(n, x) := {
+    newtIter(n, y)  if y < x
+    x               otherwise
+} where y := floor ((x + floor (n / x)) / 2)
+\end{SaveVerbatim}
+
+
+\begin{xltabular}{\textwidth}{l X X}
+  \toprule
+  \textbf{Algorithm} & \textbf{Implementation} & \textbf{\LaTeX\ output} \\
+  \midrule
+
+  Euclidean & See Section~\ref{section:euclidean-case-study} \\
+  \midrule
+  
+ \makecell{Extended\\Euclidean} & \codecell{ExtendedEuclideanSource} & \makecell{
+    <<<
+#[intext]
+egcd : N x N -> Z+ x Z x Z
+egcd(a, b) := {
+    (a, 1, 0)                       if b = 0
+    (g, y, x - floor (a / b) * y)   otherwise
+} where a >= b, (g, x, y) := egcd(b, a mod b)
+    >>>
+  } \\ 
+  \midrule
+  
+ \makecell{Modular\\Inverse} & \codecell{ModInvSource} & \makecell{
+    <<<
+#[intext]
+modInv : N x Z+ -> Z+
+modInv(a, m) := x mod m
+where (g, x, y) := egcd(a, m), g = 1
+    >>>
+  } \\ 
+  \midrule
+  
+ \makecell{Fast\\Exponentiation} & \codecell{FastExpSource} & \makecell{
+    <<<
+#[intext]
+fastExp : R x N -> R
+fastExp(a, n) := {
+    1       if n = 0
+    r       if 2 | n
+    a * r   otherwise
+} where r := fastExp(a ^ 2, floor (n / 2))
+    >>>
+  } \\ 
+  \midrule
+  
+ \makecell{Prime\\Testing} & \codecell{PrimeTestSource} & \makecell{
+    <<<
+#[intext]
+isPrime : N -> B
+isPrime(n) := {
+    False                           if n < 2
+    check(n, 2, floor (sqrt n))     otherwise
+}
+
+check : N x N x N -> B
+check(n, t, l) := {
+    True                if t > l
+    False               if t | n
+    check(n, t + 1, l)  otherwise
+}
+    >>>
+  } \\ 
+  \midrule
+  
+ \makecell{Integer\\Square\\Root} & \codecell{IntSqrtSource} & \makecell{
+    <<<
+#[intext]
+isqrt : Z+ -> Z+
+isqrt(n) := newtIter(n, n)
+
+newtIter : Z+ x Z+ -> Z+
+newtIter(n, x) := {
+    newtIter(n, y)  if y < x
+    x               otherwise
+} where y := floor ((x + floor (n / x)) / 2)
+    >>>
+  } \\ 
+
+  \bottomrule
+  \caption{Algorithms implemented in NBM. Each shown \LaTeX\ output uses the \texttt{\#[inline]} block-level annotation. }
+  \label{table:algorithms-nbm}
+\end{xltabular}
+
+\end{document}
+\endinput
+%%

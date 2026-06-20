@@ -1,0 +1,11 @@
+{
+  "files.associations": {
+    "*.nbm": "latex"
+  },
+
+  "latex-workshop.latex.autoBuild.run": "never",
+
+  "triggerTaskOnSave.tasks": {
+    "Compile NBM Source": ["**/*.nbm", "**/*.bib"]
+  }
+}

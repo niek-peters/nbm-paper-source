@@ -1,0 +1,41 @@
+## Core LaTeX auxiliary files
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz
+*.toc
+*.pdfsync
+
+## Bibliography files
+*.bbl
+*.blg
+*.run.xml
+*.bcf
+
+## Formatting/Index files
+*.out
+*.lof
+*.lot
+*.nav
+*.snm
+*.vrb
+*.idx
+*.ind
+*.ilg
+
+## ACM/Software specific junk
+*.pyg
+*.atfi
+
+## Build directories (if using VS Code or specific build scripts)
+out/
+build/
+gen/
+
+## Remaining built artifacts
+*-eps-converted-to.pdf
+
+## OS-specific
+.DS_Store
+Thumbs.db
