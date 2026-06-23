@@ -1,4 +1,4 @@
-<img width="1920" height="1026" alt="image" src="https://github.com/user-attachments/assets/12374702-8acf-4137-a4bc-6ee74aa83c87" /># Bridging the Gap between Mathematics and Programming via a Dual-Target DSL for LaTeX and Haskell - Source Code
+# Bridging the Gap between Mathematics and Programming via a Dual-Target DSL for LaTeX and Haskell - Source Code
 
 This repository contains a copy of the source files used for the research paper by "Niek Peters" titled "Bridging the Gap between Mathematics and Programming via a Dual-Target DSL for LaTeX and Haskell".
 
