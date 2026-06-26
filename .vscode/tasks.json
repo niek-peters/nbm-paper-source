@@ -9,7 +9,6 @@
         "kind": "build",
         "isDefault": true
       },
-      "problemMatcher": ["$tex-file-line-error"],
       "presentation": {
         "echo": true,
         "reveal": "silent",

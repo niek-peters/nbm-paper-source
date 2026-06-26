@@ -28,9 +28,8 @@
 *.pyg
 *.atfi
 
-## Build directories (if using VS Code or specific build scripts)
+## Build directories
 out/
-build/
 gen/
 
 ## Remaining built artifacts
