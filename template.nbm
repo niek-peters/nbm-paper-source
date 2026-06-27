@@ -580,7 +580,7 @@ Definition-level annotations could allow these styles to be configured on a per-
 
 \subsection{Implementation details}
 \label{section:implementation-details}
-With the design of the full NBM compiler pipeline and its inputs and outputs, a prototype implementation of an NBM compiler was made~\cite{niek_peters_2026_20927525}.
+With the design of the full NBM compiler pipeline and its inputs and outputs, a prototype implementation of an NBM compiler was made~\cite{niek_peters_2026_20961014}.
 This section covers nontrivial parts of this specific implementation with a significant effect on the behaviour of the tool.
 
 \subsubsection{Prelude}
@@ -632,7 +632,7 @@ In the case of rational numbers, however, the Haskell representation denotes the
 Therefore, a simple pass over the resulting strings replacing all `\%' symbols with `/' symbols is used before further processing.
 
 \subsection{Using the tool}
-The NBM compiler is used through its `Command-Line Interface' (`CLI') tool~\cite{niek_peters_2026_20927525}.
+The NBM compiler is used through its `Command-Line Interface' (`CLI') tool~\cite{niek_peters_2026_20961014}.
 Once installed, a user can use the \texttt{nbm} command by specifying a path to a source file and some optional settings for the output:
 \begin{itemize}
   \item an output directory for the generated `.hs' and `.tex' files;
