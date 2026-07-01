@@ -492,8 +492,8 @@ To achieve this order of evaluation, we write a Haskell function using the forma
 \begin{figure}[!ht]
   \begin{verbatim}
 name :: <arg_types> -> <return_type>
-name args | <arg_constraints> = error "..."
-          | <local_constraints> = error "..."
+name args | not ( <arg_constraints> ) = error "..."
+          | not ( <local_constraints> ) = error "..."
           | <implementation>
   where
     <local_declarations>
